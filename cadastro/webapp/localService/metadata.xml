@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZPRIMEIRO_SRV_295_SRV" xml:lang="pt" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="itemVenda" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Item"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Doc.vendas" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Item" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Item" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Quantidade" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:label="QtdOrdemAcum." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Um" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Unidade venda" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Valorliquido" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unicode="false" sap:label="Valor líquido" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="material" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MatlDesc" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Denominação" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MatlType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tipo material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Division" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Setor atividade" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BaseUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UM básica" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Centro" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Centro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="dados" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="ClienteID" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="Nome" Type="Edm.String" sap:unicode="false" sap:label="Nome"/>
+                <Property Name="Telefone" Type="Edm.String" sap:unicode="false" sap:label="Telefone" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UF" Type="Edm.String" sap:unicode="false" sap:label="UF"/>
+                <Property Name="Email" Type="Edm.String" sap:unicode="false" sap:label="Email" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" sap:unicode="false" sap:label="Status" sap:sortable="false"/>
+                <NavigationProperty Name="vendas" Relationship="ZPRIMEIRO_SRV_295_SRV.DadosToVendas" FromRole="FromRole_DadosToVendas" ToRole="ToRole_DadosToVendas"/>
+            </EntityType>
+            <EntityType Name="vendas" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Documento SD" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DataCriacao" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Dt.criação" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descricao" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Ref.cliente" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ClienteId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Cliente" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ValorLiquido" Type="Edm.Decimal" Nullable="false" Precision="16" Scale="3" sap:unicode="false" sap:label="Valor líquido" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CriadoPor" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Criado por" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="dados" Relationship="ZPRIMEIRO_SRV_295_SRV.DadosToVendas" FromRole="ToRole_DadosToVendas" ToRole="FromRole_DadosToVendas"/>
+                <NavigationProperty Name="itens" Relationship="ZPRIMEIRO_SRV_295_SRV.VendasToItemVenda" FromRole="FromRole_VendasToItemVenda" ToRole="ToRole_VendasToItemVenda"/>
+                <NavigationProperty Name="emissor" Relationship="ZPRIMEIRO_SRV_295_SRV.VendasToDados" FromRole="FromRole_VendasToDados" ToRole="ToRole_VendasToDados"/>
+                <NavigationProperty Name="pagador" Relationship="ZPRIMEIRO_SRV_295_SRV.VendasToDados" FromRole="FromRole_VendasToDados" ToRole="ToRole_VendasToDados"/>
+            </EntityType>
+            <EntityType Name="anexo" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Filename"/>
+                </Key>
+                <Property Name="Filename" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Caractere 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sydate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Data atual" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sytime" Type="Edm.Time" Nullable="false" Precision="0" sap:unicode="false" sap:label="Hora" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="cadeia binária" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Caractere 100" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="DadosToVendas" sap:content-version="1">
+                <End Type="ZPRIMEIRO_SRV_295_SRV.dados" Multiplicity="1" Role="FromRole_DadosToVendas"/>
+                <End Type="ZPRIMEIRO_SRV_295_SRV.vendas" Multiplicity="*" Role="ToRole_DadosToVendas"/>
+            </Association>
+            <Association Name="VendasToDados" sap:content-version="1">
+                <End Type="ZPRIMEIRO_SRV_295_SRV.vendas" Multiplicity="1" Role="FromRole_VendasToDados"/>
+                <End Type="ZPRIMEIRO_SRV_295_SRV.dados" Multiplicity="1" Role="ToRole_VendasToDados"/>
+            </Association>
+            <Association Name="VendasToItemVenda" sap:content-version="1">
+                <End Type="ZPRIMEIRO_SRV_295_SRV.vendas" Multiplicity="1" Role="FromRole_VendasToItemVenda"/>
+                <End Type="ZPRIMEIRO_SRV_295_SRV.itemVenda" Multiplicity="*" Role="ToRole_VendasToItemVenda"/>
+            </Association>
+            <EntityContainer Name="ZPRIMEIRO_SRV_295_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="itemVendaSet" EntityType="ZPRIMEIRO_SRV_295_SRV.itemVenda" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="materialSet" EntityType="ZPRIMEIRO_SRV_295_SRV.material" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="dadosSet" EntityType="ZPRIMEIRO_SRV_295_SRV.dados" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="vendasSet" EntityType="ZPRIMEIRO_SRV_295_SRV.vendas" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="anexoSet" EntityType="ZPRIMEIRO_SRV_295_SRV.anexo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="VendasToItemVenda_AssocSet" Association="ZPRIMEIRO_SRV_295_SRV.VendasToItemVenda" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="vendasSet" Role="FromRole_VendasToItemVenda"/>
+                    <End EntitySet="itemVendaSet" Role="ToRole_VendasToItemVenda"/>
+                </AssociationSet>
+                <AssociationSet Name="VendasToDados_AssocSet" Association="ZPRIMEIRO_SRV_295_SRV.VendasToDados" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="vendasSet" Role="FromRole_VendasToDados"/>
+                    <End EntitySet="dadosSet" Role="ToRole_VendasToDados"/>
+                </AssociationSet>
+                <AssociationSet Name="DadosToVendas_AssocSet" Association="ZPRIMEIRO_SRV_295_SRV.DadosToVendas" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="dadosSet" Role="FromRole_DadosToVendas"/>
+                    <End EntitySet="vendasSet" Role="ToRole_DadosToVendas"/>
+                </AssociationSet>
+                <FunctionImport Name="AlterarStatus" ReturnType="ZPRIMEIRO_SRV_295_SRV.dados" EntitySet="dadosSet" m:HttpMethod="GET" sap:action-for="ZPRIMEIRO_SRV_295_SRV.dados">
+                    <Parameter Name="ID" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="https://lnl-s4h.opustech.com.br:5200/sap/opu/odata/sap/ZPRIMEIRO_SRV_295_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://lnl-s4h.opustech.com.br:5200/sap/opu/odata/sap/ZPRIMEIRO_SRV_295_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

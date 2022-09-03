@@ -1,0 +1,46 @@
+<mvc:View 
+    controllerName="cfortini.cadastro.controller.Create"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core">
+    <Page 
+        title="Criar Novo Cliente"
+        showNavButton="true"
+        navButtonPress=".onNavBack"
+        floatingFooter="true" >
+        <f:SimpleForm 
+				title="Cliente"
+				editable="true"
+				layout="ResponsiveGridLayout" 
+				labelSpanXL="3" 
+				labelSpanL="3" 
+				labelSpanM="3" 
+				labelSpanS="12" 
+				adjustLabelSpan="false" 
+				emptySpanXL="4" 
+				emptySpanL="4" 
+				emptySpanM="4" 
+				emptySpanS="0" 
+				columnsXL="1" 
+				columnsL="1" 
+				columnsM="1" 
+				singleContainerFullSize="false">
+				<Label text="Nome"/>
+				<Input value="" id="inpNome"/>
+				<Label text="UF"/>
+				<Input value="" id="inpUF"/>                
+				<Label text="Email" />
+				<Input value="" id="inpEmail"/>				
+                <Label text="Telefone"/>
+				<Input value="" id="inpTelefone"/>				
+		</f:SimpleForm>
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+					<Button type="Accept" text="Gravar"   press=".onGravar"/>
+					<Button type="Reject" text="Cancelar" press=".onCancelar"/>
+			</OverflowToolbar>
+		</footer>
+    </Page>
+</mvc:View>

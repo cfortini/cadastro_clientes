@@ -1,0 +1,94 @@
+<mvc:View
+	controllerName="cfortini.cadastro.controller.Object"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:semantic="sap.f.semantic">
+
+	<semantic:SemanticPage
+		id="page"
+		headerPinnable="false"
+		toggleHeaderOnTitleClick="false"
+		busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}"
+		closeAction="true"
+		showFooter="true">
+
+		<semantic:titleHeading>
+			<Title text="{Nome}" level="H2"/>
+		</semantic:titleHeading>
+
+		<semantic:headerContent>
+			<ObjectNumber unit="{UF}" />
+		</semantic:headerContent>
+
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press=".onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<!-- Content -->
+		<l:VerticalLayout width="100%">
+			<f:SimpleForm 
+				editable="true"
+				layout="ResponsiveGridLayout" 
+				labelSpanXL="3" 
+				labelSpanL="3" 
+				labelSpanM="3" 
+				labelSpanS="12" 
+				adjustLabelSpan="false" 
+				emptySpanXL="4" 
+				emptySpanL="4" 
+				emptySpanM="4" 
+				emptySpanS="0" 
+				columnsXL="1" 
+				columnsL="1" 
+				columnsM="1" 
+				singleContainerFullSize="false">
+				<Label text="ID"/>
+				<Text text="{ID}"/>
+				<Label text="Nome"/>
+				<Input value="{Nome}" id="inputNome"/>
+				<Label text="Telefone"/>
+				<Input value="{Telefone}"/>				
+				<Label text="UF"/>
+				<Input value="{UF}"/>
+			</f:SimpleForm>
+			<List 
+			growing="true"
+			growingScrollToLoad="true"
+			id="vendasListCliente"
+			headerText="Lista de Vendas"
+			class="sapUiResponsiveMargin"
+			width="auto"
+			items="{
+				path:'vendas',
+				sorter:{
+					path:'DataCriacao',
+					descending:true
+				},
+				parameters:{
+					expand:'dados'
+				}
+			}">
+				<items>
+					<ObjectListItem  
+						title="{Descricao}"
+					 	number="{ValorLiquido}"
+						numberState="{= ${ValorLiquido} > 12000.000 ? 'Success' : 'Error' }">
+						<attributes>
+							<ObjectAttribute text="{Id}"/>
+							<ObjectAttribute text="{DataCriacao}"/>
+							<ObjectAttribute text="{dados/Email}"/>
+				            <ObjectAttribute text="{Endereco}"/>
+						</attributes>	
+					</ObjectListItem>
+				</items>
+			</List>
+		</l:VerticalLayout>
+		<semantic:footerCustomActions>
+			<Button type="Accept" text="Gravar" press=".onGravar2" />
+			<Button type="Reject" text="Cancelar" press=".onCancelar"/>
+		</semantic:footerCustomActions>
+	</semantic:SemanticPage>
+
+</mvc:View>
